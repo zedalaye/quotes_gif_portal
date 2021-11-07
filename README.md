@@ -7,6 +7,7 @@ Requires a [Phantom Wallet](https://phantom.app) connected to the [Solana](https
 ## Backend
 
 * Written in Rust [Anchor](https://project-serum.github.io/anchor) eDSL
+* Tested using Mocha, run tests with `anchor test`
 * [Deployed to the Solana devnet](https://explorer.solana.com/address/4H8RWS5zZsj34WitF4JEuVLUxmsQgYBA9XxWBQBT52Sz?cluster=devnet)
 * Stores a list of GIF Urls and allow anyone who agrees to spend some SOL to:
   * add a GIF (of a Kaamelott Quote) to the list
