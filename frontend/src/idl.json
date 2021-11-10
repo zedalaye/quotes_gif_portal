@@ -30,6 +30,11 @@
           "name": "baseAccount",
           "isMut": true,
           "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
         }
       ],
       "args": [

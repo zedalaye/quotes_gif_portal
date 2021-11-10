@@ -149,7 +149,6 @@ const App = () => {
     try {
       const provider = getProvider();
       const program = new Program(idl, programID, provider);
-      console.log("ping")
       await program.rpc.startStuffOff({
         accounts: {
           baseAccount: baseAccount.publicKey,
@@ -158,11 +157,11 @@ const App = () => {
         },
         signers: [baseAccount]
       });
-      console.log("Created a new BaseAccount w/ address:", baseAccount.publicKey.toString())
+      console.log("Created a new BaseAccount w/ address:", baseAccount.publicKey.toString());
       await getGifList();
     }
     catch(error) {
-      console.log("Error creating BaseAccount account:", error)
+      console.log("Error creating BaseAccount account:", error);
     }
   }
 
@@ -172,19 +171,19 @@ const App = () => {
       const program = new Program(idl, programID, provider);
       const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
 
-      console.log("Got the account", account)
-      setGifList(account.gifList)
+      console.log("Got the account", account);
+      setGifList(account.gifList);
 
     } catch (error) {
-      console.log("Error in getGifs: ", error)
+      console.log("Error in getGifs: ", error);
       setGifList(null);
     }
   }
 
   const sendGif = async () => {
     if (inputValue.length === 0) {
-      console.log("No GIF link given!")
-      return
+      console.log("No GIF link given!");
+      return;
     }
     console.log('GIF link:', inputValue);
     try {
@@ -194,13 +193,14 @@ const App = () => {
       await program.rpc.addGif(inputValue, {
         accounts: {
           baseAccount: baseAccount.publicKey,
+          user: provider.wallet.publicKey,
         },
       });
-      console.log("GIF successfully sent to program", inputValue)
+      console.log("GIF successfully sent to program", inputValue);
 
       await getGifList();
     } catch (error) {
-      console.error("Error sending GIF:", error)
+      console.error("Error sending GIF:", error);
     }
   };
 
@@ -223,7 +223,7 @@ const App = () => {
 
       await getGifList();
     } catch (error) {
-      console.error("Error sending up vote: ", error)
+      console.error("Error sending up vote: ", error);
     }
   };
 
@@ -242,11 +242,11 @@ const App = () => {
           baseAccount: baseAccount.publicKey,
         },
       });
-      console.log("Downvote successfully sent to program", index)
+      console.log("Downvote successfully sent to program", index);
 
       await getGifList();
     } catch (error) {
-      console.error("Error sending down vote: ", error)
+      console.error("Error sending down vote: ", error);
     }
   };
 
