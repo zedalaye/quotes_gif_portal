@@ -15,11 +15,12 @@ pub mod quotes_gif_program {
 
   pub fn add_gif(ctx: Context<AddGif>, gif_link: String) -> ProgramResult {
     let base_account = &mut ctx.accounts.base_account;
+    let user = &mut ctx.accounts.user;
 
 	  // Build the struct.
     let item = ItemStruct {
       gif_link: gif_link.to_string(),
-      user_address: *base_account.to_account_info().key,
+      user_address: *user.to_account_info().key,
       votes: 0,
     };
 
@@ -84,6 +85,8 @@ pub struct StartStuffOff<'info> {
 pub struct AddGif<'info> {
   #[account(mut)]
   pub base_account: Account<'info, BaseAccount>,
+  #[account(mut)]
+  pub user: Signer<'info>
 }
 
 // Create a custom struct for us to work with.

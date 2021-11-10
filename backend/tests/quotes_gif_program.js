@@ -32,6 +32,7 @@ describe("quote-gif-program", () => {
     await program.rpc.addGif("insert_a_giphy_link_here", {
       accounts: {
         baseAccount: baseAccount.publicKey,
+        user: provider.wallet.publicKey,
       },
     });
 
@@ -40,6 +41,7 @@ describe("quote-gif-program", () => {
 
     let gifs = account.gifList;
     assert.equal(gifs[0].gifLink, "insert_a_giphy_link_here");
+    assert.ok(gifs[0].userAddress.equals(provider.wallet.publicKey));
   });
 
   it('Upvotes a GIF', async() => {
