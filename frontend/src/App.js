@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 import { Connection, PublicKey, clusterApiUrl} from '@solana/web3.js';
@@ -165,7 +165,7 @@ const App = () => {
     }
   }
 
-  const getGifList = async() => {
+  const getGifList = useCallback(async () => {
     try {
       const provider = getProvider();
       const program = new Program(idl, programID, provider);
@@ -178,7 +178,7 @@ const App = () => {
       console.log("Error in getGifs: ", error);
       setGifList(null);
     }
-  }
+  }, []);
 
   const sendGif = async () => {
     if (inputValue.length === 0) {
@@ -217,6 +217,7 @@ const App = () => {
       await program.rpc.upVote(new BN(index), {
         accounts: {
           baseAccount: baseAccount.publicKey,
+          user: provider.wallet.publicKey,
         },
       });
       console.log("Upvote successfully sent to program", index);
@@ -240,6 +241,7 @@ const App = () => {
       await program.rpc.downVote(new BN(index), {
         accounts: {
           baseAccount: baseAccount.publicKey,
+          user: provider.wallet.publicKey,
         },
       });
       console.log("Downvote successfully sent to program", index);
@@ -265,7 +267,7 @@ const App = () => {
       console.log('Fetching GIF list...');
       getGifList();
     }
-  }, [walletAddress]);
+  }, [walletAddress, getGifList]);
 
   return (
     <div className="App">

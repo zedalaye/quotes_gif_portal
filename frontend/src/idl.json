@@ -3,7 +3,7 @@
   "name": "quotes_gif_program",
   "instructions": [
     {
-      "name": "startStuffOff",
+      "name": "initialize",
       "accounts": [
         {
           "name": "baseAccount",
@@ -51,6 +51,11 @@
           "name": "baseAccount",
           "isMut": true,
           "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
         }
       ],
       "args": [
@@ -73,6 +78,11 @@
           "name": "baseAccount",
           "isMut": true,
           "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
         }
       ],
       "args": [
@@ -89,6 +99,11 @@
           "name": "baseAccount",
           "isMut": true,
           "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
         }
       ],
       "args": [
@@ -155,6 +170,13 @@
           }
         ]
       }
+    }
+  ],
+  "errors": [
+    {
+      "code": 300,
+      "name": "GifIndexOutOfBounds",
+      "msg": "No GIF at this index"
     }
   ],
   "metadata": {
