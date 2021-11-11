@@ -8,8 +8,8 @@ quotes_gif_program = "4H8RWS5zZsj34WitF4JEuVLUxmsQgYBA9XxWBQBT52Sz"
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "/home/pierre/.config/solana/id.json"
 
 [scripts]
-test = "mocha -t 1000000 tests/"
+test = "mocha --inspect -t 1000000 tests/"
